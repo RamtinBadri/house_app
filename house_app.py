@@ -1,24 +1,15 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, IntVar, StringVar
 from tkinter.ttk import Treeview
 
-# def name_validation():
-#     pass
-# def add_click():
-#     if name_validation()
-
-
-
-
-
-
-
-
-
-
-
-
-
+def reset_form():
+    id.set(0)
+    location.set("")
+    postal_code.set(0)
+    owner.set("")
+    parking.set("")
+    elevator.set("")
+    roof.set("")
 
 
 
@@ -38,7 +29,7 @@ Entry(win, textvariable=location).place(x=100, y=70)
 
 # postal_code
 Label(win, text="postal_code").place(x=20, y=120)
-postal_code = StringVar()
+postal_code = IntVar()
 Entry(win, textvariable=postal_code).place(x=100, y=120)
 
 # owner
@@ -48,17 +39,17 @@ Entry(win, textvariable=owner).place(x=100, y=170)
 
 # parking
 Label(win, text="parking").place(x=20, y=220)
-parking = BooleanVar()
+parking = StringVar()
 Entry(win, textvariable=parking).place(x=100, y=220)
 
 # elevator
 Label(win, text="elevator").place(x=20, y=270)
-elevator = BooleanVar()
+elevator = StringVar()
 Entry(win, textvariable=elevator).place(x=100, y=270)
 
 # roof
 Label(win, text="roof").place(x=20, y=320)
-roof = BooleanVar()
+roof = StringVar()
 Entry(win, textvariable=roof).place(x=100, y=320)
 
 # Table
