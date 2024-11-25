@@ -13,7 +13,18 @@ def owner_validator(owner):
 
 
 def parking_validator(parking):
-       print(re.match(r"{50}\s",parking))
+       print(re.match(r"\d{10}\s",parking))
+
+
+def asansor_validator(asansor):
+       print(re.match(r"\d{3}\s",asasor))
+
+       
+       
+def roof_validator(roof):
+       print(re.match(r"\d{4}\s",roof))
+       
+       
 
 
 def myFunction():
@@ -22,3 +33,34 @@ if  myFunction():
        print("Yes!")
 else:
        print("No!")
+ pass
+ 
+ 
+ 
+ 
+  def myFunction():
+              return True
+
+       if myFunction():
+              print("Yes!")
+       else:
+              print("No!")
+pass
+
+
+
+
+
+              def myFunction():
+                     return True
+
+
+              if myFunction():
+                     print("Yes!")
+              else:
+                     print("No!")
+              
+              
+       
+       
+
