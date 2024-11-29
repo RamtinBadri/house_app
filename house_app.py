@@ -6,7 +6,6 @@ import tkinter.messagebox as msg  # alias
 
 house_list = []
 
-
 def reset_form():
     id.set(0)
     location.set("")

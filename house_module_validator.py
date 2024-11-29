@@ -25,33 +25,33 @@ def roof_validator(roof):
     print(re.match(r"\d{4}\s", roof))
 
 
-# def myFunction():
-#     return True
-#
-#
-# if myFunction():
-#     print("Yes!")
-# else:
-#     print("No!")
-# pass
-#
-#
-# def myFunction():
-#     return True
-#
-#
-# if myFunction():
-#     print("Yes!")
-# else:
-#     print("No!")
-# pass
-#
-#
-# def myFunction():
-#     return True
-#
-#
-# if myFunction():
-#     print("Yes!")
-# else:
-#     print("No!")
+def myFunction():
+    return True
+
+
+if myFunction():
+    print("Yes!")
+else:
+    print("No!")
+pass
+
+
+def myFunction():
+    return True
+
+
+if myFunction():
+    print("Yes!")
+else:
+    print("No!")
+pass
+
+
+def myFunction():
+    return True
+
+
+if myFunction():
+    print("Yes!")
+else:
+    print("No!")
