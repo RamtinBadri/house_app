@@ -1,6 +1,11 @@
 from tkinter import *
 from tkinter import ttk, IntVar, StringVar
 from tkinter.ttk import Treeview
+from house_module_validator import *
+import tkinter.messagebox as msg  # alias
+
+house_list = []
+
 
 def reset_form():
     id.set(0)
@@ -12,45 +17,57 @@ def reset_form():
     roof.set("")
 
 
+def add_click():
+    if (location_validator(location.get()) and postal_validator(postal_code.get()) and owner_validator(
+            owner.get()) and parking_validator(parking.get()) and elevator_validator(elevator.get()) and
+            roof_validator(roof.get())):
+        house = (location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
+        table.insert("", END, values=house)
+        reset_form()
+        msg.showinfo("Save", "Saved Successful")
+        house_list.append(house)
+    else:
+        msg.showerror("Save Error", "Invalid Data !!!")
+
 
 win = Tk()
 win.geometry("1000x420")
 win.title("house_app")
 
 # id
-Label(win, text="id").place(x=20, y=20)
+Label(win, text="id").place(x=20, y=30)
 id = IntVar()
-Entry(win, textvariable=id).place(x=100, y=20)
+Entry(win, textvariable=id).place(x=100, y=30)
 
 # location
-Label(win, text="location").place(x=20, y=70)
+Label(win, text="location").place(x=20, y=80)
 location = StringVar()
-Entry(win, textvariable=location).place(x=100, y=70)
+Entry(win, textvariable=location).place(x=100, y=80)
 
 # postal_code
-Label(win, text="postal_code").place(x=20, y=120)
+Label(win, text="postal_code").place(x=20, y=130)
 postal_code = IntVar()
-Entry(win, textvariable=postal_code).place(x=100, y=120)
+Entry(win, textvariable=postal_code).place(x=100, y=130)
 
 # owner
-Label(win, text="owner").place(x=20, y=170)
+Label(win, text="owner").place(x=20, y=180)
 owner = StringVar()
-Entry(win, textvariable=owner).place(x=100, y=170)
+Entry(win, textvariable=owner).place(x=100, y=180)
 
 # parking
-Label(win, text="parking").place(x=20, y=220)
+Label(win, text="parking").place(x=20, y=230)
 parking = StringVar()
-Entry(win, textvariable=parking).place(x=100, y=220)
+Entry(win, textvariable=parking).place(x=100, y=230)
 
 # elevator
-Label(win, text="elevator").place(x=20, y=270)
+Label(win, text="elevator").place(x=20, y=280)
 elevator = StringVar()
-Entry(win, textvariable=elevator).place(x=100, y=270)
+Entry(win, textvariable=elevator).place(x=100, y=280)
 
 # roof
-Label(win, text="roof").place(x=20, y=320)
+Label(win, text="roof").place(x=20, y=330)
 roof = StringVar()
-Entry(win, textvariable=roof).place(x=100, y=320)
+Entry(win, textvariable=roof).place(x=100, y=330)
 
 # Table
 table = Treeview(win, columns=[1, 2, 3, 4, 5, 6, 7], height=15, show="headings")
@@ -74,8 +91,7 @@ table.column(6, width=100)
 table.column(7, width=100)
 table.place(x=300, y=30)
 
-
 # Save
-#  Button(win, text="Add", width=8, command=add_click).place(x=80, y=260)
+Button(win, text="Add", width=10, command=add_click).place(x=200, y=380)
 
 win.mainloop()
