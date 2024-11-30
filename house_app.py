@@ -3,8 +3,10 @@ from tkinter import ttk, IntVar, StringVar
 from tkinter.ttk import Treeview
 from house_module_validator import *
 import tkinter.messagebox as msg  # alias
+import tkinter.filedialog as dialog
 
 house_list = []
+
 
 def reset_form():
     id.set(0)
@@ -27,6 +29,48 @@ def add_click():
         house_list.append(house)
     else:
         msg.showerror("Save Error", "Invalid Data !!!")
+
+
+def refresh_table():
+    # Clear Table
+    for item in table.get_children():
+        table.delete(item)
+
+    # for house in house_list:
+    #     table.insert("", END, values=house, tags="talabkar" if account[2] >= 0 else "bedehkar")
+
+
+def save_click():
+    house = (id.get(), location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
+    house_list.append(house)
+    reset_form()
+
+
+def delete_click():
+    house = (id.get(), location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
+    house_list.remove(house)
+    reset_form()
+
+
+def table_select(event):
+    # print(event)
+    selected_item_id = table.focus()
+    # print(selected_item_id)
+
+    selected_item = table.item(selected_item_id)
+    account = selected_item["values"]
+    id.set(account[0])
+    location.set(account[1])
+    postal_code.set(account[2])
+    owner.set(account[3])
+    parking.set(account[4])
+    elevator.set(account[5])
+    roof.set(account[6])
+
+
+def close_form():
+    if msg.askyesno("Exit", "Are You Sure?"):
+        win.destroy()
 
 
 win = Tk()
@@ -54,14 +98,13 @@ owner = StringVar()
 Entry(win, textvariable=owner).place(x=100, y=180)
 
 # parking
-Label(win, text="parking").place(x=20, y=230)
-parking = StringVar()
-Entry(win, textvariable=parking).place(x=100, y=230)
+
+parking = BooleanVar()
+Checkbutton(win, text="parking", variable=parking).place(x=20, y=230)
 
 # elevator
-Label(win, text="elevator").place(x=20, y=280)
-elevator = StringVar()
-Entry(win, textvariable=elevator).place(x=100, y=280)
+elevator = BooleanVar()
+Checkbutton(win, text="elevator", variable=elevator).place(x=20, y=280)
 
 # roof
 Label(win, text="roof").place(x=20, y=330)
@@ -92,5 +135,6 @@ table.place(x=300, y=30)
 
 # Save
 Button(win, text="Add", width=10, command=add_click).place(x=200, y=380)
+Button(win, text="Delete", width=10, command=delete_click).place(x=100, y=380)
 
 win.mainloop()
