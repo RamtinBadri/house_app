@@ -47,9 +47,10 @@ def save_click():
 
 
 def delete_click():
-    house = (id.get(), location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
-    house_list.remove(house)
-    reset_form()
+    if msg.askyesno("Delete", "Are You Sure?"):
+        house = (id.get(), location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
+        house_list.remove(house)
+        reset_form()
 
 
 def table_select(event):
@@ -76,6 +77,7 @@ def close_form():
 win = Tk()
 win.geometry("1000x420")
 win.title("house_app")
+win.protocol("WM_DELETE_WINDOW", close_form)
 
 # id
 Label(win, text="id").place(x=20, y=30)
