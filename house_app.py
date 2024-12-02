@@ -4,8 +4,21 @@ from tkinter.ttk import Treeview
 from house_module_validator import *
 import tkinter.messagebox as msg  # alias
 import tkinter.filedialog as dialog
+from PIL import Image, ImageTk
 
 house_list = []
+
+
+def add_click():
+    if (location_validator(location.get()) and postal_validator(postal_code.get()) and owner_validator(
+            owner.get()) and roof_validator(roof.get())):
+        house = (location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
+        table.insert("", END, values=house)
+        msg.showinfo("Save", "Saved Successful"), reset_form()
+        house_list.append(house)
+        reset_form()
+    else:
+        msg.showerror("Save Error", "Invalid Data !!!")
 
 
 def reset_form():
@@ -13,37 +26,14 @@ def reset_form():
     location.set("")
     postal_code.set(0)
     owner.set("")
-    parking.set("")
-    elevator.set("")
     roof.set("")
-
-
-def add_click():
-    if (location_validator(location.get()) and postal_validator(postal_code.get()) and owner_validator(
-            owner.get()) and parking_validator(parking.get()) and elevator_validator(elevator.get()) and
-            roof_validator(roof.get())):
-        house = (location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
-        table.insert("", END, values=house)
-        reset_form()
-        msg.showinfo("Save", "Saved Successful")
-        house_list.append(house)
-    else:
-        msg.showerror("Save Error", "Invalid Data !!!")
+    refresh_table()
 
 
 def refresh_table():
     # Clear Table
     for item in table.get_children():
         table.delete(item)
-
-    # for house in house_list:
-    #     table.insert("", END, values=house, tags="talabkar" if account[2] >= 0 else "bedehkar")
-
-
-def save_click():
-    house = (id.get(), location.get(), postal_code.get(), owner.get(), parking.get(), elevator.get(), roof.get())
-    house_list.append(house)
-    reset_form()
 
 
 def delete_click():
@@ -56,17 +46,16 @@ def delete_click():
 def table_select(event):
     # print(event)
     selected_item_id = table.focus()
-    # print(selected_item_id)
 
     selected_item = table.item(selected_item_id)
-    account = selected_item["values"]
-    id.set(account[0])
-    location.set(account[1])
-    postal_code.set(account[2])
-    owner.set(account[3])
-    parking.set(account[4])
-    elevator.set(account[5])
-    roof.set(account[6])
+    house = selected_item["values"]
+    id.set(house[0])
+    location.set(house[1])
+    postal_code.set(house[2])
+    owner.set(house[3])
+    parking.set(house[4])
+    elevator.set(house[5])
+    roof.set(house[6])
 
 
 def close_form():
@@ -135,8 +124,19 @@ table.column(6, width=100)
 table.column(7, width=100)
 table.place(x=300, y=30)
 
+table.place(x=250, y=20)
+table.bind("<ButtonRelease>", table_select)
+table.bind("<KeyRelease>", table_select)
+
 # Save
 Button(win, text="Add", width=10, command=add_click).place(x=200, y=380)
 Button(win, text="Delete", width=10, command=delete_click).place(x=100, y=380)
+
+# photo
+img = Image.open("house_app.png")
+img = img.resize(100, 100)
+
+img = ImageTk.PhotoImage(img)
+Label(win, image = img).place(x=20, y=20)
 
 win.mainloop()
