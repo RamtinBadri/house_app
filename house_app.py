@@ -64,7 +64,7 @@ def close_form():
 
 
 win = Tk()
-win.geometry("1000x420")
+win.geometry("1000x450")
 win.title("house_app")
 win.protocol("WM_DELETE_WINDOW", close_form)
 
@@ -132,11 +132,11 @@ table.bind("<KeyRelease>", table_select)
 Button(win, text="Add", width=10, command=add_click).place(x=200, y=380)
 Button(win, text="Delete", width=10, command=delete_click).place(x=100, y=380)
 
-# photo
+# image
 img = Image.open("house_app.png")
-img = img.resize(100, 100)
+img = img.resize((90, 90))
 
 img = ImageTk.PhotoImage(img)
-Label(win, image = img).place(x=20, y=20)
+Label(win, image = img).place(x=400, y=350)
 
 win.mainloop()

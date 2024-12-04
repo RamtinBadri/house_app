@@ -2,7 +2,7 @@ import re
 
 
 def location_validator(location):
-    print(re.match(r"\w{100}\s", location))
+    return bool(re.match(r"\w{100}\s", location))
 
 
 def postal_validator(postal):
@@ -10,20 +10,20 @@ def postal_validator(postal):
 
 
 def owner_validator(owner):
-    print(re.match(r"[a-z]{50}\s", owner))
+    return bool(re.match(r"[a-zA-Z]{50}\s", owner))
 
 
-# def parking_validator(parking):
-#     print(re.match(r"\d{4}\s", parking))
+def parking_validator(parking):
+    return bool
 
 
-# def elevator_validator(elevator):
-#     print(re.match(r"\d{4}\s", elevator))
+def elevator_validator(elevator):
+    return bool
 
 
 def roof_validator(roof):
-    print(re.match(r"\d{4}\s", roof))
-
+    if 10 >= roof >= -4:
+        return True
 
 # def myFunction():
 #     return True
